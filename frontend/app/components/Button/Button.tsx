@@ -9,11 +9,12 @@ interface ButtonProps {
     secondary ?: boolean
     danger ?: boolean
     disabled ?: boolean
+    className? : string
 
 };
 
 function Button({
-    type, fullWidth, children,onClick,secondary, danger, disabled
+    type, fullWidth, children,onClick,secondary, danger, disabled, className
 }:ButtonProps) {
     return (
        <button 
@@ -28,8 +29,8 @@ function Button({
         fullWidth && 'w-full',
         secondary? 'text-gray-900':'text-white', 
         danger&& 'bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose', 
-        !secondary && ! danger && 'bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky'
-
+        !secondary && ! danger && 'bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky',
+        className
         )}
         >
           {children}
