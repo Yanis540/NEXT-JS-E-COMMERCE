@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions={
             clientSecret: process.env.GITHUB_SECRET! as string,
         }),
         CredentialsProvider({
-            name: "Sign in",
+            name: "credentials",
             credentials: {
                 email: {label: "Email",type: "text",},
                 password: { label: "Password", type: "password" },
@@ -38,11 +38,11 @@ export const authOptions: NextAuthOptions={
                 })
                 if(!user)
                     throw new Error(`No user with Email : ${credentials?.email}`)
-                const isVerified = await bcrypt.compare(credentials.password,user?.hashedPassword!);
-                if(!isVerified)
+                const isCorrectPassword = await bcrypt.compare(credentials.password,user?.hashedPassword!);
+                if(!isCorrectPassword)
                     throw new Error("Unauthorized");
 
-                return {...user,password:""} ; 
+                return user ; 
             }
         })
     ],
