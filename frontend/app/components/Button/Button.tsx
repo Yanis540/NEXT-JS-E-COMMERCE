@@ -29,7 +29,7 @@ function Button({
         fullWidth && 'w-full',
         secondary? 'text-gray-900':'text-white', 
         danger&& 'bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose', 
-        !secondary && ! danger && 'bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky',
+        !secondary && ! danger && 'bg-dark-gray hover:bg-[rgba(50,50,50,1)] focus-visible:outline-sky',
         className
         )}
         >

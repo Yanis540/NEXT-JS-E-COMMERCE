@@ -4,6 +4,8 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar/Navbar'
 import clsx from "clsx"
+import AuthContext from './context/AuthContext'
+import ToastContext from './context/ToasterContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -26,12 +28,15 @@ export default function RootLayout({
         'text-dark-gray font-bold flex flex-col min-h-screen w-full ', 
         )}
       >
-        {
-          !pathname?.includes('auth') && (
-            <Navbar /> 
-          )
-        }
-        {children}
+        <AuthContext>
+          <ToastContext />
+          {
+            !pathname?.includes('auth') && (
+              <Navbar /> 
+            )
+          }
+          {children}
+        </AuthContext>
       </body>
     </html>
   )
