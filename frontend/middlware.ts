@@ -11,6 +11,7 @@ export default withAuth({
 export const config = {
     matcher: [
         '/account/:path*',
+        '/favorites',
         '/checkout/:path*'
     ]
 }

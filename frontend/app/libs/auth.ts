@@ -8,37 +8,27 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt'
 
 export const authOptions: NextAuthOptions={
-    pages:{
-        signIn : "/auth"
-    },
+    adapter: PrismaAdapter(db),
     session: {
         strategy: "jwt",
     },
-    secret:process.env.NEXTAUTH_SECRET, 
-    jwt:{
-        secret: process.env.NEXTAUTH_JWT_SECRET
-    },
+    secret:process.env.NEXTAUTH_SECRET! as string , 
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            clientId: process.env.GOOGLE_CLIENT_ID! as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET! as string,
         }),
         GithubProvider({
-            clientId: process.env.GITHUB_ID!,
-            clientSecret: process.env.GITHUB_SECRET!,
+            clientId: process.env.GITHUB_ID! as string,
+            clientSecret: process.env.GITHUB_SECRET! as string,
         }),
         CredentialsProvider({
             name: "Sign in",
             credentials: {
-                email: {
-                    label: "Email",
-                    type: "email",
-                },
+                email: {label: "Email",type: "text",},
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials){
-                console.log("here with credn")
-                console.log(credentials)
                 if(!credentials?.email || !credentials?.password)
                     throw new Error("Unauthorized");
                 const user = await db.user.findFirst({
@@ -48,13 +38,13 @@ export const authOptions: NextAuthOptions={
                 })
                 if(!user)
                     throw new Error(`No user with Email : ${credentials?.email}`)
-                const isVerified = await bcrypt.compare(credentials.password,user?.password!);
+                const isVerified = await bcrypt.compare(credentials.password,user?.hashedPassword!);
                 if(!isVerified)
-                    throw new Error("Unathorized");
+                    throw new Error("Unauthorized");
 
                 return {...user,password:""} ; 
             }
         })
     ],
-    adapter: PrismaAdapter(db),
+    debug: process.env.NODE_ENV === 'development'
 }

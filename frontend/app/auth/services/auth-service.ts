@@ -32,7 +32,7 @@ const useAuthService = ()=>{
         try{
             //axios Register
             if( variant === 'REGISTER'){
-                await axios.post('/api/register',data)
+                await axios.post('/api/register',data,)
                 await signIn('credentials',{data});
             }
             // NextAuth Login 
