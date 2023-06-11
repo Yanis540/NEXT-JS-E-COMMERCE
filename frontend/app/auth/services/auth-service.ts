@@ -33,14 +33,18 @@ const useAuthService = ()=>{
             //axios Register
             if( variant === 'REGISTER'){
                 await axios.post('/api/register',data)
-                signIn('credentials',{data})
+                await signIn('credentials',{data});
             }
             // NextAuth Login 
             if(variant === 'LOGIN'){
-                await signIn('credentials', {
+                const response = await signIn('credentials', {
                     ...data, 
                     redirect:false 
                 })
+                if(response?.error){
+                    toast.error(response?.error)
+                    throw new Error("")
+                }
                 toast.success("Logged In ! ")
             }
         }

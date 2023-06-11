@@ -95,14 +95,10 @@ function Navbar({}:NavbarProps) {
                         <RxHamburgerMenu className="text-dark-gray " size={30} /> 
                         <BsChevronDown className={`text-white w-4 trasnition ${showMobileMenu ? 'rotate-180':'rotate-0'} duration-500`}/> 
                     </div>
-                <div 
-                    className="hidden md:flex flex-row items-center gap-2 cursor-pointer relative "
-                >
-                   
+                
                     <AccountMenu 
                         visible ={showAccountMenu }
                     /> 
-                </div>
                 </div>
             </nav>
         </>

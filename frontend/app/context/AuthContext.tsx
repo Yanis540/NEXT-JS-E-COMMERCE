@@ -6,7 +6,7 @@ interface AuthContextProps {
 
 function AuthContext({children}:AuthContextProps) {
     return (
-        <SessionProvider>
+        <SessionProvider >
             {children}
         </SessionProvider>
     );
