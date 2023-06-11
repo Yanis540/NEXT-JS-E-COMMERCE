@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={clsx(
         inter.className, 
-        'text-dark-gray font-bold ', 
+        'text-dark-gray font-bold flex flex-col min-h-screen w-full ', 
         )}
       >
         {
