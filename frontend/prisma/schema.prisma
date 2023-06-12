@@ -30,23 +30,27 @@ model Account {
 }
 
 model User {
-  id             String    @id @default(uuid())
-  name           String?
-  email          String?   @unique
-  emailVerified  DateTime?
-  image          String?
-  hashedPassword String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  accounts       Account[]
+  id                String    @id @default(uuid())
+  name              String?
+  email             String?   @unique
+  emailVerified     DateTime?
+  image             String?
+  hashedPassword    String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  accounts          Account[]
+  favorite_products Product[]
 }
 
 model Product {
   id           String     @id @default(uuid())
+  name         String
+  image        String?
   quantity     Int        @default(0)
   categories   Category[]
   category_ids String
   price        Int
+  liked_by     User[]
 }
 
 model Category {

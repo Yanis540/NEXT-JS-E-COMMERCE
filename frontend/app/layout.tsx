@@ -6,6 +6,10 @@ import Navbar from '@/components/Navbar/Navbar'
 import clsx from "clsx"
 import AuthContext from './context/AuthContext'
 import ToastContext from './context/ToasterContext'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -19,16 +23,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname(); 
-
+  // Create a client
+  const queryClient = new QueryClient()
 
   return (
-    <html lang="en">
-      <body className={clsx(
-        inter.className, 
-        'text-dark-gray font-bold flex flex-col min-h-screen w-full ', 
-        )}
-      >
-        <AuthContext>
+  <html lang="en">
+    <body className={clsx(inter.className, 'text-dark-gray font-bold flex flex-col min-h-screen w-full ', )}>
+      <AuthContext>
+        <QueryClientProvider client={queryClient}>
           <ToastContext />
           {
             !pathname?.includes('auth') && (
@@ -36,8 +38,9 @@ export default function RootLayout({
             )
           }
           {children}
-        </AuthContext>
-      </body>
-    </html>
+        </QueryClientProvider>
+      </AuthContext>
+    </body>
+  </html>
   )
 }
