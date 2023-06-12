@@ -11,6 +11,8 @@ import {AiOutlineShoppingCart} from "react-icons/ai"
 import {MdOutlineBookmarkBorder} from "react-icons/md"
 import AccountMenu from './components/AccountMenu';
 import { useBasket } from '@/context/store/use-basket';
+import NavbarBasket from './components/NavbarBasket/NavbarBasket';
+import useScroll from './hooks/use-scroll';
 interface NavbarProps {
 
 };
@@ -23,17 +25,22 @@ export type Item = {
 function Navbar({}:NavbarProps) {
     const [showAccountMenu,setShowAccountMenu] = useState<boolean>(false);
     const [showMobileMenu,setShowMobileMenu] = useState<boolean>(false)
-    const [showBackground, setShowBackground] = useState<boolean>(false);
-
+    const [showBasket, setShowBasket] = useState<boolean>(false);
+    const [showBackground,_] = useScroll();
     const toggleAccountMenu = ()=>setShowAccountMenu(!showAccountMenu)
     const toggleMobileMenu = ()=>setShowMobileMenu(!showMobileMenu)
+    const toggleBasket = ()=>setShowBasket(!showBasket)
     const {basket} = useBasket()
-    console.log(basket)
     const items:Item[] = [
         {
             href:'/shop',
             label:'Shop', 
-            Icon : AiOutlineShoppingCart 
+        }, 
+        {
+            href:'/checkout',
+            label:'Card', 
+            Icon : AiOutlineShoppingCart,
+            onClick:toggleBasket
         }, 
         {
             href:'/favorites',
@@ -51,22 +58,13 @@ function Navbar({}:NavbarProps) {
        
 
     ]
-    const TOP_OFFSET = 33 ; 
-    useEffect(()=>{
-        const handleScroll=()=>{
-            if(window.scrollY >= TOP_OFFSET)
-                setShowBackground(true)
-            else    
-                setShowBackground(false)
-        }
-        window.addEventListener('scroll',handleScroll);
-
-        return ()=>{
-            window.removeEventListener('scroll',handleScroll);
-        }
-    },[])
+   
     return (
         <>
+            <NavbarBasket 
+                visible={showBasket}
+                onClose={()=>{setShowBasket(false)}}
+            /> 
             <NavbarMobileMenu 
                 items={items} 
                 visible={showMobileMenu} 
