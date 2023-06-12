@@ -1,7 +1,6 @@
 'use client'
 import { useProducts } from './hooks/use-products'
 import { useSession } from 'next-auth/react';
-import Products from '@/components/Product/Products';
 import HorizontalScroll from '@/components/Scroll/HorizontalScroll';
 export default function Home() {
 

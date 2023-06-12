@@ -34,8 +34,8 @@ function NavbarBasket({onClose,visible}:NavbarBasketProps) {
             onClose={onClose}
             isOpen={visible}
         >
-            <div className="flex flex-col h-full  items-start ">
-                <div className='flex-1 w-full overflow-y-scroll rounded-lg border-[0.05px] border-dark-gray scrollbar-hide '>
+            <div className="flex flex-col h-full  w-full items-start ">
+                <div className='flex-1 w-full overflow-y-scroll px-2 rounded-lg border-[0.05px] border-dark-gray scrollbar-hide '>
                     {
                         basket?.map((product)=>(
                             <NavbarProduct key={product.id} product={product} /> 

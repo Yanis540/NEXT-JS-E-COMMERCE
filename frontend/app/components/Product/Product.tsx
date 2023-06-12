@@ -1,17 +1,18 @@
 'use client'
 import { useBasket } from '@/context/store/use-basket';
+import { FullProduct } from '@/types';
 import { Product as ProductType } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import {SlBasket} from "react-icons/sl"
 interface ProductProps {
-    product : ProductType
+    product : FullProduct
 };
 
 function Product({product}:ProductProps) {
     const {name} =product||{}
-    const {add,basket} = useBasket();
+    const {add} = useBasket();
     const handleAddProductToBasket = ()=>{
         add(product)
     }

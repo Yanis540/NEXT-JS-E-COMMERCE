@@ -1,6 +1,6 @@
 'use client'
 import { useBasket } from '@/context/store/use-basket';
-import { BasketProduct } from '@/types';
+import { BasketProduct, FullProduct } from '@/types';
 import Link from 'next/link';
 import React from 'react';
 import {IoIosAddCircleOutline,IoMdRemoveCircleOutline} from 'react-icons/io'
@@ -11,17 +11,11 @@ interface NavbarProductProps {
 
 function NavbarProduct({product}:NavbarProductProps) {
     const {name}= product||{}
+    const full_product :FullProduct= product;
     const {add,remove,remove_all} = useBasket()
-    const handleAddProductToBasket = ()=>{
-        add(product)
-    }
-    const handleRemoveOneProductFromBasket = ()=>{
-        remove(product)
-    }
-    const handleRemoveProductFromBasket = ()=>{
-        remove_all(product.id)
-    }
-    console.log(product)
+    const handleAddProductToBasket = ()=> add(full_product)
+    const handleRemoveOneProductFromBasket = ()=> remove(full_product)
+    const handleRemoveProductFromBasket = ()=> remove_all(full_product.id)
     return (
         <div key={product.id} className="flex flex-row items-center justify-center w-full p-2 px-3 border-b-[0.1px] border-gray-300">
             <div className='flex flex-col items-center justify-center rounded-lg '>
@@ -51,13 +45,13 @@ function NavbarProduct({product}:NavbarProductProps) {
             <div className="flex flex-col items-center ">
                 <div className="flex flex-row items-center justify-between gap-[15px] relative">
                     <IoMdRemoveCircleOutline 
-                        onClick={handleAddProductToBasket} 
+                        onClick={handleRemoveOneProductFromBasket} 
                         className="cursor-pointer " 
                         size={24} 
                     /> 
                         <span className="font-100">{product.qte}</span>
                     <IoIosAddCircleOutline 
-                        onClick={handleRemoveOneProductFromBasket} 
+                        onClick={handleAddProductToBasket} 
                         className="cursor-pointer " 
                         size={24} 
                     /> 
