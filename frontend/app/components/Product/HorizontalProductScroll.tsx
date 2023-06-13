@@ -1,13 +1,16 @@
 import { FullProduct } from '@/types';
 import React from 'react';
-import Product from '../Product/Product';
+import Product from './Product';
+import ProductSkeleton from './ProductSkeleton';
 
-interface HorizontalScrollProps {
+interface HorizontalProductScrollProps {
     label : string 
     products : FullProduct[]
+    isLoading : boolean 
 };
 
-function HorizontalScroll({label,products}:HorizontalScrollProps) {
+function HorizontalProductScroll({label,products,isLoading}:HorizontalProductScrollProps) {
+
     return (
         <div className="flex flex-col py-5  px-5 mb-3 h-full w-[70%] mx-auto max-w-[1200px] bg-[#c8c8c810] rounded-xl">
             <h1 className="text-left py-5 pr-5 md:pr-10 lg:pr-20    font-bold text-4xl text-dark-blue ">
@@ -17,11 +20,15 @@ function HorizontalScroll({label,products}:HorizontalScrollProps) {
                 className="flex overflow-x-scroll  pb-10 scrollbar-hide "
             >
                 <div className="flex flex-nowrap pr-5 md:pr-10 lg:pr-20 ">
-
+                    
                     {
-                        products?.map((product,index)=>(
-                            <Product key={product.id} product={product} /> 
-                        ))
+                        isLoading
+                        ?   Array.from({length:50})?.map((_,index)=>(
+                                <ProductSkeleton key={index} /> 
+                            ))
+                        :   products?.map((product,index)=>(
+                                <Product key={product.id} product={product} /> 
+                            ))
                     }
                    
 
@@ -31,4 +38,4 @@ function HorizontalScroll({label,products}:HorizontalScrollProps) {
     );
 };
 
-export default HorizontalScroll;
+export default HorizontalProductScroll;

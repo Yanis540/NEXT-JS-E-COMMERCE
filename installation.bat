@@ -5,3 +5,6 @@ npm i --save-dev @types/bcrypt
 npm i react-hot-toast date-fns @headlessui/react react-select react-spinners zustand 
 npm i @prisma/client
 npm i @next-auth/prisma-adapter
+npm install @mui/material @emotion/react @emotion/styled
+
+
