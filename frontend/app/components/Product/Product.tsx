@@ -1,18 +1,16 @@
 'use client'
-import { useBasket } from '@/context/store/use-basket';
+import { useStoreBasket } from '@/context/store/use-store-basket';
 import { FullProduct } from '@/types';
-import { Product as ProductType } from '@prisma/client';
-import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
 import {SlBasket} from "react-icons/sl"
+import FavoriteButton from '../Favorite/FavoriteButton';
 interface ProductProps {
     product : FullProduct
 };
 
 function Product({product}:ProductProps) {
     const {name} =product||{}
-    const {add} = useBasket();
+    const {add} = useStoreBasket();
     const handleAddProductToBasket = ()=>{
         add(product)
     }
@@ -35,7 +33,15 @@ function Product({product}:ProductProps) {
                 <div className="flex flex-row items-center justify-between pt-5 w-full  px-5 relative">
 
                     {/* description */}
-                    <Link href={`/products/${product.id}`} className="font-600  text-gray-500 text-sm cursor-pointer">{`${name.slice(0,20)}${name.slice(0,20).length<20?'':'...'}`}</Link>
+                    <div className="flex flex-row items-center justify-center ">
+                        <Link 
+                            href={`/products/${product.id}`} 
+                            className="font-600  text-gray-500 text-sm cursor-pointer"
+                        >
+                            {`${name.slice(0,20)}${name.slice(0,20).length<20?'':'...'}`}
+                        </Link>
+                        <FavoriteButton productId={product?.id??''} /> 
+                    </div>
                     <div className='group duration-300 transition-all ease-in-out'>
                         <h2 className="
                             flex flex-row items-center justify-center gap-[5px]  font-100

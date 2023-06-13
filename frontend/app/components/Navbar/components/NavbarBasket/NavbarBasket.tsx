@@ -1,5 +1,5 @@
 import Drawer from '@/components/Drawer/Drawer';
-import { useBasket } from '@/context/store/use-basket';
+import { useStoreBasket } from '@/context/store/use-store-basket';
 import { BasketProduct } from '@/types';
 import React, { useMemo } from 'react';
 import NavbarProduct from './components/NavbarProduct';
@@ -13,7 +13,7 @@ interface NavbarBasketProps {
 };
 
 function NavbarBasket({onClose,visible}:NavbarBasketProps) {
-    const {basket} = useBasket();
+    const {basket} = useStoreBasket();
     const try_basket:BasketProduct[] = [
         {
             category_ids:"",

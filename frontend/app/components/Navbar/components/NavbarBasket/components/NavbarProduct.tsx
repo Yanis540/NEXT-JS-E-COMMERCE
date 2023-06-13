@@ -1,5 +1,5 @@
 'use client'
-import { useBasket } from '@/context/store/use-basket';
+import { useStoreBasket } from '@/context/store/use-store-basket';
 import { BasketProduct, FullProduct } from '@/types';
 import Link from 'next/link';
 import React from 'react';
@@ -12,7 +12,7 @@ interface NavbarProductProps {
 function NavbarProduct({product}:NavbarProductProps) {
     const {name}= product||{}
     const full_product :FullProduct= product;
-    const {add,remove,remove_all} = useBasket()
+    const {add,remove,remove_all} = useStoreBasket()
     const handleAddProductToBasket = ()=> add(full_product)
     const handleRemoveOneProductFromBasket = ()=> remove(full_product)
     const handleRemoveProductFromBasket = ()=> remove_all(full_product.id)

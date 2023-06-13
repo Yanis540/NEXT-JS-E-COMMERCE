@@ -4,13 +4,13 @@ import {CgProfile} from "react-icons/cg"
 import { IconType } from 'react-icons/lib';
 import Link from 'next/link';
 import NavbarItem from './components/NavbarItem';
-import {useEffect, useState} from "react"
+import {useState} from "react"
 import NavbarMobileMenu from './components/NavbarMobileMenu';
 import {RxHamburgerMenu} from "react-icons/rx"
 import {AiOutlineShoppingCart} from "react-icons/ai"
 import {MdOutlineBookmarkBorder} from "react-icons/md"
 import AccountMenu from './components/AccountMenu';
-import { useBasket } from '@/context/store/use-basket';
+import { useStoreBasket } from '@/context/store/use-store-basket';
 import NavbarBasket from './components/NavbarBasket/NavbarBasket';
 import useScroll from './hooks/use-scroll';
 interface NavbarProps {
@@ -30,7 +30,7 @@ function Navbar({}:NavbarProps) {
     const toggleAccountMenu = ()=>setShowAccountMenu(!showAccountMenu)
     const toggleMobileMenu = ()=>setShowMobileMenu(!showMobileMenu)
     const toggleBasket = ()=>setShowBasket(!showBasket)
-    const {basket} = useBasket()
+    const {basket} = useStoreBasket()
     const items:Item[] = [
         {
             href:'/shop',

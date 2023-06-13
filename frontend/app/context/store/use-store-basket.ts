@@ -1,6 +1,5 @@
-import useLocalStorage from '@/hooks/use-local-storage'
+'use client'
 import { BasketProduct, FullProduct } from '@/types'
-import { Product } from '@prisma/client'
 import { create } from 'zustand'
 
 interface BasketState {
@@ -10,12 +9,11 @@ interface BasketState {
   remove_all: (id: string) => void
   clear_basket:()=>void
 }
-const local_basket = localStorage.getItem("basket")?JSON.parse(localStorage.getItem("basket")!):[]
 const set_local_basket = (basket:BasketProduct[])=>{
     localStorage.setItem("basket",JSON.stringify(basket))
 }
-const useBasket = create<BasketState>((set:any,get:any)=>({
-    basket :local_basket, 
+const useStoreBasket = create<BasketState>((set:any,get:any)=>({
+    basket : typeof window !="undefined"&&localStorage?.getItem("basket")?JSON.parse(localStorage.getItem("basket")!):[], 
     add : (product:FullProduct)=>set((prev:BasketState)=>{
 
         const index = prev.basket.map((prod:FullProduct)=>prod.id).indexOf(product.id); 
@@ -57,10 +55,16 @@ const useBasket = create<BasketState>((set:any,get:any)=>({
         }
     })
     ,
-    clear_basket : ()=>set((prev:BasketState)=>({basket:[]}))
+    clear_basket : ()=>set((prev:BasketState)=>{
+        set_local_basket([])
+        return {
+            ...prev, 
+            basket:[]
+        }
+    })
     
 }))
 
 export {
-    useBasket
+    useStoreBasket
 }
