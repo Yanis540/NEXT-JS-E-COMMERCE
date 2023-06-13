@@ -23,7 +23,7 @@ function AccountMenu({visible}:AccountMenuProps) {
         return null;
     return (
         <div className="hidden md:flex flex-row items-center gap-2 cursor-pointer relative ">
-            <div className={clsx( "bg-dark-gray w-56 absolute top-5 right-0  py-5 flex-col border-2 border-gray-800 rounded duration-100 transition-all ease-out", )}>
+            <div className={clsx( "bg-dark-gray w-56 absolute top-5 right-0  py-5 flex-col border-2 border-dark-gray rounded duration-100 transition-all ease-out", )}>
                 <div className="flex flex-col gap-3">
                     {
                         session.status === "authenticated"&& (

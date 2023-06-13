@@ -1,4 +1,5 @@
 'use client'
+import FavoriteButton from '@/components/Favorite/FavoriteButton';
 import { useStoreBasket } from '@/context/store/use-store-basket';
 import { BasketProduct, FullProduct } from '@/types';
 import Link from 'next/link';
@@ -27,20 +28,27 @@ function NavbarProduct({product}:NavbarProductProps) {
                 />  
             </div>
 
-            <div className="flex-1 flex flex-col items-start justify-start w-full  px-5 relative">
-
-                {/* description */}
-                <Link href={`/products/${product.id}`} className="font-600  text-gray-500 text-sm cursor-pointer">{`${name.slice(0,20)}${name.slice(0,20).length<20?'':'...'}`}</Link>
-                <div className=''>
-                    <h2 className="
-                        flex flex-row items-center justify-start gap-[5px]  font-100
-                    ">
-                        Price : {product.price}
-                        <span className="text-xs text-gray-500  ">$</span>
-                    </h2>
-                    
-                    {/* add some stuff for for hover to add */}
+            <div className="flex-1 flex flex-row items-start justify-start   px-5 relative">
+                <div className="flex flex-col items-start justify-start relative">
+                    {/* description */}
+                    <Link href={`/products/${product.id}`} className="font-600  text-gray-500 text-sm cursor-pointer">{`${name.slice(0,20)}${name.slice(0,20).length<20?'':'...'}`}</Link>
+                    <div className=''>
+                        <h2 className="
+                            flex flex-row items-center justify-start gap-[5px]  font-100
+                        ">
+                            Price : {product.price}
+                            <span className="text-xs text-gray-500  ">$</span>
+                        </h2>
+                        
+                        {/* add some stuff for for hover to add */}
+                    </div>
                 </div>
+                <div className="">
+                    <FavoriteButton 
+                        productId={product.id} 
+                    /> 
+                </div>
+               
             </div>
             <div className="flex flex-col items-center ">
                 <div className="flex flex-row items-center justify-between gap-[15px] relative">

@@ -57,7 +57,7 @@ function Product({product}:ProductProps) {
                             className="
                                 flex flex-row items-center justify-end gap-[5px] w-full
                                 absolute -bottom-8 left-0 opacity-0 delay-200
-                                group-hover:bottom-0 group-hover:opacity-100 group-hover:delay-200
+                                group-hover:bottom-3 group-hover:opacity-100 group-hover:delay-200
                                 transition-all cursor-pointer
                                 
                             "
