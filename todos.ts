@@ -7,18 +7,22 @@
 todo    -   fix the protected routes problem with NextAuth ??? 
 
 !   Home page : 
-todo    -   display products 
-
+?       -   display products 
 !   Shop : 
 todo    -   Add a shopping page : 
 *           -   Show products by searching there name / category  
-todo    -   Add a store to save basket
-todo    -   Add product to save   
+?       -   Add a store to save basket
+?       -   Add product to save   
 
 
 
 !   Favorites : 
-todo    -   Show favorite products     
+todo    -   Add remove/add to favorite       
+todo    -   Show favorite products : 
+*           - backend: done 
+*           - frontend : 
+*               -   specific product : doing  
+*               -   Favorites page: 
 
 
 
