@@ -1,10 +1,13 @@
+import { FullProduct } from '@/types';
 import React from 'react';
 
 interface ResultsShopProps {
+    products : FullProduct[]
+    isLoading : boolean 
 
 };
 
-function ResultsShop({}:ResultsShopProps) {
+function ResultsShop({products,isLoading}:ResultsShopProps) {
     return (
         <div className="flex-1 border border-blue-500 overflow-y-scroll scrollbar-hide">
            ResultsShop

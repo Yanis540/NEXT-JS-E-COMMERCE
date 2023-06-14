@@ -8,7 +8,12 @@ interface ShopProps {
 };
 
 function Shop({}:ShopProps) {
-    const {register,errors,isLoading, Submit, setValue, watched_categories} = useSearchProducts();
+    const {
+        register,errors,isLoading, 
+        Submit, setValue, watched_categories, 
+        products 
+    } = useSearchProducts();
+    console.log(products)
     return (
         <div className="text-dark-gray pt-[64px] h-[calc( 100% - 64px )] h-screen max-h-screen w-full px-5 overflow-y-scroll scrollbar-hide border border-red-500">
             <div className='flex-1 flex flex-col md:flex-row gap-4   h-full w-full overflow-y-scroll  '>
@@ -22,7 +27,7 @@ function Shop({}:ShopProps) {
                     watched_categories ={watched_categories}
                 /> 
                 {/* results */}
-                <ResultsShop /> 
+                <ResultsShop products={products} isLoading={isLoading} /> 
            </div>
         </div>
     );

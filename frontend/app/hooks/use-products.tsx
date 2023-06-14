@@ -1,11 +1,7 @@
 import axios from "axios"
 
 import {
-    useQuery,
     useMutation,
-    useQueryClient,
-    QueryClient,
-    QueryClientProvider,
     UseMutateFunction,
   } from '@tanstack/react-query'
 import { Category, Product } from "@prisma/client"
@@ -26,7 +22,7 @@ const useProducts= ()=>{
     const {data,error,isLoading,mutate:getProducts}:useProductsType= useMutation({
         mutationKey:["products"], 
         mutationFn:async({name,categories}:{name?:string,categories?:Category[]})=>{
-            const response = await axios.get('/api/products',{params:{name,categories:categories??[]}})
+            const response = await axios.get('/api/products',{params:{name,categories:categories?JSON.stringify(categories):JSON.stringify([])}})
             const data = await response.data
             return data;
         }
