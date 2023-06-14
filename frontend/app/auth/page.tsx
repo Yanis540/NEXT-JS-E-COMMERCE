@@ -19,8 +19,8 @@ interface AuthProps {
 function Auth({}:AuthProps) {
     const session = useSession();
     const {
-        onSubmit,variant,register,errors,isLoading,
-        socialAction,toggleVariant,handleSubmit
+        Submit,variant,register,errors,isLoading,
+        socialAction,toggleVariant
     } = useAuthService()
     const router = useRouter();
   
@@ -37,7 +37,7 @@ function Auth({}:AuthProps) {
             <div className='bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10'>
                 <form 
                     className='space-y-6 '
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={Submit}
                 >
                     {
                         variant === 'REGISTER' && (

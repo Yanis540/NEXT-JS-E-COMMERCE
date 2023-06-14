@@ -1,7 +1,12 @@
 import { db } from "@/libs/db";
 import { NextResponse } from "next/server";
+import {z} from 'zod'
 
 
+const searchProductForm = z.object({
+    name : z.string().optional(), 
+    categories : z.array(z.object({id:z.string(),name:z.string()}))
+})
 
 export async function GET(req:Request){
     try{

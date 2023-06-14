@@ -10,7 +10,8 @@ todo    -   fix the protected routes problem with NextAuth ???
 ?       -   display products 
 !   Shop : 
 todo    -   Add a shopping page : 
-*           -   Show products by searching there name / category  
+*           -   Show products by searching there name
+*           -   Implement on the sidebar a way to get products by categories   
 ?       -   Add a store to save basket
 ?       -   Add product to save   
 

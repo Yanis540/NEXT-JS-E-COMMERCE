@@ -4,10 +4,16 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios"
 import {signIn} from "next-auth/react"
 import {toast} from 'react-hot-toast'
-
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod"
 const useAuthService = ()=>{
     const [variant,setVariant] = useState<Variant>('LOGIN');
     const [isLoading,setIsLoading] = useState<boolean>(false);
+    const authSchema = z.object({
+        email : z.string().email(), 
+        password : z.string(), 
+        name : z.string().optional()    
+    })
     const toggleVariant = useCallback(()=>{
         if(variant === 'LOGIN')
             setVariant('REGISTER') 
@@ -25,7 +31,8 @@ const useAuthService = ()=>{
             name:'',
             email:'', 
             password:''
-        }
+        }, 
+        resolver : zodResolver(authSchema)
     });
     const onSubmit : SubmitHandler<FieldValues> = async(data)=>{
         setIsLoading(true); 
@@ -56,6 +63,8 @@ const useAuthService = ()=>{
         }
 
     }  
+    const Submit=handleSubmit(onSubmit)
+    
     const socialAction = async(action : string)=>{
         setIsLoading(true);
         try{
@@ -72,7 +81,7 @@ const useAuthService = ()=>{
     }
 
     return {
-        onSubmit,variant,register,errors,isLoading,socialAction,toggleVariant, handleSubmit
+        variant,register,errors,isLoading,socialAction,toggleVariant, Submit
     }
 }
 

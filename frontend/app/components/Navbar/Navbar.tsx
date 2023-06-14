@@ -71,7 +71,7 @@ function Navbar({}:NavbarProps) {
                 onClose={()=>{setShowMobileMenu(false)}}
             />
             <nav className='w-full z-40 fixed '>
-                <div className={`flex flex-row items-center px-5 py-5 h-[64px] transition-all duration-300 ease-in-out  ${showBackground? 'bg-dark-gray text-white bg-opacity-90 ' : '' }`}>
+                <div className={`flex flex-row items-center px-5 py-5 h-[64px] transition-all duration-300 ease-in-out  ${showBackground? 'bg-dark-gray text-white bg-opacity-90 ' : 'bg-white' } rounded`}>
                     <Link href='/' className="flex-1 text-xl md:text-2xl lg:text-4xl ">Yanis Shop</Link>
                     <div  className='hidden md:flex flex-row '>
                         {/* Logo from the left */}
