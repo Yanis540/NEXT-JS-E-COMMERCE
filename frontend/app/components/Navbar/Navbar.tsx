@@ -43,7 +43,7 @@ function Navbar({}:NavbarProps) {
             onClick:toggleBasket
         }, 
         {
-            href:'/favorites',
+            href:'/account/favorites',
             label:'Favorites', 
             Icon : MdOutlineBookmarkBorder 
         }, 
