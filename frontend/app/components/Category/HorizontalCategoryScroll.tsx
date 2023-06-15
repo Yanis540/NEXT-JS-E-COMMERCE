@@ -13,7 +13,7 @@ interface HorizontalCategoryScrollProps {
 function HorizontalCategoryScroll({label,categories,isLoading,className}:HorizontalCategoryScrollProps) {
 
     return (
-        <div className={clsx(className," flex flex-col py-5  px-5 mb-3 h-full w-[70%] mx-auto max-w-[1200px] bg-[#c8c8c810] rounded-xl")}>
+        <div className={clsx(className," flex flex-col py-5  px-5 mb-3 h-full w-[70%] mx-auto max-w-[1200px] bg-light-gray-transparent rounded-xl")}>
             <h1 className="text-left py-5 pr-5 md:pr-10 lg:pr-20    font-bold text-4xl text-dark-blue ">
                 {label} : 
             </h1>

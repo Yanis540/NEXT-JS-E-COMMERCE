@@ -16,7 +16,7 @@ module.exports = {
       colors:{
         'dark-gray':'rgba(35, 35, 35, 1)', 
         'light-gray':'rgba(143, 143, 143, 1)', 
-        'light-gray-transparent':'#c8c8c870', 
+        'light-gray-transparent':'#c8c8c810', 
         'dark-blue':"#293241", 
         "medium-blue":"#3d5a80"
       }

@@ -8,13 +8,15 @@ import { IoClose, IoTrash } from 'react-icons/io5';
 
 import AvatarGroup from '@/components/Avatar/AvatarGroup';
 import {ReactNode} from "react"
+import clsx from 'clsx';
 interface DrawerProps {
   isOpen : boolean 
   onClose : ()=>void
   children: ReactNode
+  left ?: boolean
 };
 
-function Drawer({children,isOpen,onClose}:DrawerProps) {
+function Drawer({children,isOpen,onClose,left}:DrawerProps) {
     
     
     return (
@@ -36,14 +38,18 @@ function Drawer({children,isOpen,onClose}:DrawerProps) {
                     </Transition.Child>
                     <div className="fixed inset-0 overflow-hidden">
                         <div className="absolute inset-0 overflow-hidden">
-                            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                            <div className={clsx(
+                                "pointer-events-none fixed inset-y-0 flex max-w-full", 
+                                left?'left-0 pr-10': 'right-0 pl-10'
+                                )}
+                            >
                                 <Transition.Child
                                     as ={React.Fragment}
                                     enter="transform transition ease-in-out duration-500"
-                                    enterFrom="translate-x-full"
+                                    enterFrom={left?"-translate-x-full":"translate-x-full"}
                                     enterTo="translate-x-0"
                                     leave="transform transition ease-in-out duration-500"
-                                    leaveTo="translate-x-full"
+                                    leaveTo={left?"-translate-x-full":"translate-x-full"}
                                 >
                                     <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                                         <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
