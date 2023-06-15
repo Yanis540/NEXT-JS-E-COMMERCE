@@ -1,6 +1,4 @@
 import { useFavorite } from '@/hooks/use-favorite';
-import {useEffect} from "react"
-import useGetUser from '@/hooks/use-get-user';
 import React, { useCallback, useMemo } from 'react';
 import {GrFavorite as EmptyHeart} from "react-icons/gr";
 import {MdFavorite as FilledHeart} from "react-icons/md";
