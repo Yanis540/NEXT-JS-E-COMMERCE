@@ -55,8 +55,8 @@ function Drawer({children,isOpen,onClose}:DrawerProps) {
                                                             onClick={onClose}
                                                             className="
                                                                 rounded-md bg-white text-gray-400 hover:text-gray-500 
-                                                                focus:outline-none focus:ring-2 focus:ring-dark-gray 
-                                                                focus:ring-offset-2
+                                                                focus:outline-none focus:ring-0 focus:ring-dark-gray 
+                                                                focus:ring-offset-0
                                                             "
                                                         >
                                                             <span className="sr-only">Close panel</span>

@@ -14,9 +14,12 @@ interface NavbarItemProps {
 function NavbarItem({href,onClick,label,Icon,isMobile}:NavbarItemProps) {
     const {basket} = useStoreBasket();
     const router=useRouter()
+    const isCheckout = href.includes('checkout');
+
     const handleOnClick = ()=>{
-        if(onClick && !isMobile)            
+        if(onClick && (!isMobile ||isCheckout))
             onClick()
+                
         else 
             if(isMobile)
                 router.push('/'+label.toLowerCase())
@@ -24,7 +27,6 @@ function NavbarItem({href,onClick,label,Icon,isMobile}:NavbarItemProps) {
                 router.push(href??"#")
 
     }
-    const isCheckout = href.includes('checkout');
     const number_items_per_basket = useMemo(()=>{
         return basket?.length??0
     },[basket?.length])
@@ -42,7 +44,7 @@ function NavbarItem({href,onClick,label,Icon,isMobile}:NavbarItemProps) {
             )}
     
             <p
-                className="bg-transparent "
+                className="bg-transparent ml-1 "
             >
                 {
                     (!Icon|| isMobile) && (

@@ -38,7 +38,7 @@ function Navbar({}:NavbarProps) {
         }, 
         {
             href:'/checkout',
-            label:'Card', 
+            label:'Basket', 
             Icon : AiOutlineShoppingCart,
             onClick:toggleBasket
         }, 

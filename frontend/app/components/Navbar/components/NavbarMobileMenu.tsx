@@ -27,6 +27,7 @@ function NavbarMobileMenu({items,visible,onClose}:NavbarMobileMenuProps) {
                                 href={item.href}
                                 Icon={item.Icon}
                                 isMobile={true}
+                                onClick={item.onClick}
                             /> 
                         </div>
                     ))
