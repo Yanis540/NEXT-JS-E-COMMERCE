@@ -14,7 +14,7 @@ interface SelectProps {
 
 function Select({label,value,onChange,options,disabled,errors}:SelectProps) {
     return (
-        <div className="z-[100]">
+        <div className="z-[50]">
             
           {/* <label className="block text-sm font-medium leading-6 text-gray-600">
             {label}
@@ -30,7 +30,7 @@ function Select({label,value,onChange,options,disabled,errors}:SelectProps) {
                 styles={{
                     menuPortal : (base)=>({
                         ...base , 
-                        zIndex:9999
+                        zIndex:30
                     })
                 }}
                 classNames={{

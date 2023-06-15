@@ -1,17 +1,16 @@
-import { FullProduct } from '@/types';
 import React from 'react';
-import Product from './Product';
-import ProductSkeleton from './ProductSkeleton';
 import clsx from 'clsx';
-
-interface HorizontalProductScrollProps {
+import Category from './Category';
+import { Category as CategoryType } from '@prisma/client';
+import ProductSkeleton from '../Product/ProductSkeleton';
+interface HorizontalCategoryScrollProps {
     label : string 
-    products : FullProduct[]
+    categories : CategoryType[]
     isLoading : boolean 
     className ? : string
 };
 
-function HorizontalProductScroll({label,products,isLoading,className}:HorizontalProductScrollProps) {
+function HorizontalCategoryScroll({label,categories,isLoading,className}:HorizontalCategoryScrollProps) {
 
     return (
         <div className={clsx(className," flex flex-col py-5  px-5 mb-3 h-full w-[70%] mx-auto max-w-[1200px] bg-[#c8c8c810] rounded-xl")}>
@@ -28,8 +27,8 @@ function HorizontalProductScroll({label,products,isLoading,className}:Horizontal
                         ?   Array.from({length:50})?.map((_,index)=>(
                                 <ProductSkeleton key={index} /> 
                             ))
-                        :   products?.map((product,index)=>(
-                                <Product key={product.id} product={product} /> 
+                        :   categories?.map((category,index)=>(
+                                <Category key={category.id} category={category} /> 
                             ))
                     }
                    
@@ -40,4 +39,4 @@ function HorizontalProductScroll({label,products,isLoading,className}:Horizontal
     );
 };
 
-export default HorizontalProductScroll;
+export default HorizontalCategoryScroll;

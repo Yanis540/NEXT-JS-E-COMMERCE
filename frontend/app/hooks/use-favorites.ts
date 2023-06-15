@@ -23,7 +23,9 @@ const useFavorites = ()=>{
     }) 
 
     return {
-        data,isLoading,error
+        favorite_products: data?.favorite_products??[],
+        isLoading,
+        error
         
     }
 }

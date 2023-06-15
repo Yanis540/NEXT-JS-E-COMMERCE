@@ -49,7 +49,7 @@ function NavbarBasket({onClose,visible}:NavbarBasketProps) {
                 </div>
                 <div className="w-full">
                    <Button className="w-full ">
-                        <Link href="/payment">Checkout</Link>
+                        <Link href="/checkout">Checkout</Link>
                    </Button>
                 </div>
 

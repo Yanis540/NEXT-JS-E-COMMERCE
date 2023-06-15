@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET(req:Request){
     try{
         const user = await serverAuth();
-        const favorites_products = (await db.user.findMany({
+        const favorite_products = (await db.user.findFirst({
             where:{
                 id:user.id, 
             },
@@ -16,14 +16,15 @@ export async function GET(req:Request){
                     }
                 }
             }
-        }))
-        console.log(favorites_products)
+        }))?.favorite_products??[]
 
-        return NextResponse.json({favorites_products})
+        return NextResponse.json({favorite_products:favorite_products})
 
     }
     catch(err:any ){
-        console.log(err.message,"ERROR_PRODUCTS_FAVORITE_PRODUCTID"); 
+        console.log(err.message,"ERROR_PRODUCTS_FAVORITES"); 
+        if((err.message as string).includes("Unauthorized"))
+            return new NextResponse("Unauthorized",{status:401})
         return new NextResponse("Internal Error Server",{status:500})
     }
 }

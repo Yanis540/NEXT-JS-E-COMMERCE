@@ -45,12 +45,12 @@ function Product({product}:ProductProps) {
                     <div className='group duration-300 transition-all ease-in-out'>
                         <h2 className="
                             flex flex-row items-center justify-center gap-[5px]  font-100
-                            transform translate-y-0 opacity-100 delay-200
+                            transform translate-y-0 opacity-100 delay-200 font-bold
                             group-hover:-translate-y-10 group-hover:opacity-0 group-hover:delay-200
                             transition-all 
                         ">
                             Price : {product.price}
-                            <span className="text-xs text-gray-500  ">$</span>
+                            <span className="text-xs text-gray-500 font-medium ">$</span>
                         </h2>
                         <div 
                             onClick={handleAddProductToBasket}
@@ -63,7 +63,7 @@ function Product({product}:ProductProps) {
                             "
                         >
                             <SlBasket size={16} /> 
-                            <span className="text-sm mr-2">Add To Basket</span>
+                            <span className="text-sm mr-2 font-bold">Add To Basket</span>
                             
                         </div>
                         {/* add some stuff for for hover to add */}

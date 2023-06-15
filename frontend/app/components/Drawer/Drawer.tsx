@@ -21,7 +21,7 @@ function Drawer({children,isOpen,onClose}:DrawerProps) {
         <>
             
             <Transition.Root show ={isOpen}as={React.Fragment}>
-                <Dialog as="div"className="relative z-50" onClose={onClose}>
+                <Dialog as="div"className="relative z-[100]  " onClose={onClose}>
                     <Transition.Child 
                         as={React.Fragment} 
                         enter ="ease-out duration-500"

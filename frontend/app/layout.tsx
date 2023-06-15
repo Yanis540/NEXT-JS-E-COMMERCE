@@ -29,7 +29,7 @@ export default function RootLayout({
 
   return (
   <html lang="en">
-    <body className={clsx(inter.className, 'text-dark-gray font-bold flex flex-col min-h-screen w-full ', )}>
+    <body className={clsx(inter.className, 'text-dark-gray font-medium flex flex-col min-h-screen w-full ', )}>
       <AuthContext>
         <QueryClientProvider client={queryClient}>
           <ToastContext />
