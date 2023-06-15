@@ -1,23 +1,26 @@
 import { FullProduct } from '@/types';
 import React from 'react';
 import Product from './Product';
-import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 import 'react-horizontal-scrolling-menu/dist/styles.css';
+import ProductSkeleton from './ProductSkeleton';
 interface ProductsProps {
-    label: string 
     products : FullProduct []
+    isLoading : boolean 
 };  
 
-function Products({label,products}:ProductsProps) {
+function Products({products,isLoading}:ProductsProps) {
     
     return (
-        <div className="flex flex-col rounded py-5  px-2 mb-3 h-full w-[70%] mx-auto max-w-[1200px] ">
+        <div className="grid grid-cols-1 items-center md:grid-col-2 lg:grid-cols-3 gap-[20px] mx-auto  rounded py-5  px-2 mb-3 h-full max-w-[1500px] ">
             {/* Products */}
-            <h2 className="text-left text-4xl text-dark-blue">{label}</h2>
             {
-                products?.map((product)=>(
-                    <Product key={product.id} product = {product} /> 
-                ))
+                isLoading?
+                    Array.from({length:50}).map((_,i)=>(
+                        <ProductSkeleton key={i} /> 
+                    ))
+                :   products?.map((product)=>(
+                        <Product key={product.id} product = {product} /> 
+                    ))
             }
         </div>
     );

@@ -19,7 +19,7 @@ function SidebarShop({register,isLoading, Submit,errors, setValue, watched_categ
     // const static_categories = [{id:"123",name:'Men'},{id:"125",name:'T-Shirt'}]
    
     return (
-        <div className="flex-[0.1] md:flex-[0.2] border-r-[0.5px]  border-r-gray-300 h-full  px-2 ">
+        <div className="flex-[0.1] md:flex-[0.2] h-full  px-2 ">
             <form 
                 className="flex flex-col items-center justify-center h-full "
                 onSubmit={Submit}

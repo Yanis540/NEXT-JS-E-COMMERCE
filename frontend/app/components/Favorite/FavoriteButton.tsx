@@ -40,7 +40,6 @@ function FavoriteButton({productId}:FavoriteButtonProps) {
         }
        
     },[add,isFavorite,remove,refetch_user])
-
     if(!user)
         return null;
     
