@@ -30,7 +30,7 @@ todo    -   fix the protected routes problem with NextAuth ???
 
 !   Account 
 !       - General Account 
-todo        -   Show general account informations  
+?           -   Show general account informations  
 !       - Orders 
 todo        -   Display Orders page         
 
