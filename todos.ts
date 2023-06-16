@@ -1,6 +1,6 @@
 /* 
-
-
+! scroll bar
+scrollbar-thin scrollbar-thumb-dark-gray scrollbar-track-white scrollbar-rounded-md
 
 
 !   Auth : 
@@ -25,6 +25,10 @@ todo    -   fix the protected routes problem with NextAuth ???
 ?               -   specific product : doing  
 ?               -   Favorites page: 
 
+
+
+!   Product : 
+todo    -   display the product 
 
 
 

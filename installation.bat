@@ -10,4 +10,4 @@ npm install @mui/material @emotion/react @emotion/styled
 npm i @hookform/resolvers zod
 
 
-
+npm i tailwind-scrollbar

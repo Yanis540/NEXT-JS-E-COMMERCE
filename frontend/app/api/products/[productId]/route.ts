@@ -3,22 +3,23 @@ import { NextResponse } from "next/server"
 
 
 
-export async function POST(req:Request,context:{ params:{productId: string} }){
+export async function GET(req:Request,context:{ params:{productId: string} }){
     try{
+
         const {productId} = context.params
         const existingProduct = await db.product.findFirst({
             where:{
                 id:productId
             }, 
             include:{
-                categories:true
+                categories:true,
             }
         })
         if(!existingProduct)
             return new NextResponse(`Product with id ${productId} Not Found`,{status:404})
         
     
-        return NextResponse.json({existingProduct})
+        return NextResponse.json({product:existingProduct})
 
     }
     catch(err:any ){

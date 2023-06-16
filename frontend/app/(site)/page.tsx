@@ -14,7 +14,7 @@ export default function Home() {
   
   return (
     <>
-      <div className=" text-dark-gray pt-[64px] min-h-screen h-[calc( 100% - 64px )] w-full px-5 overflow-y-scroll scrollbar-hide">
+      <div className=" text-dark-gray pt-[64px] min-h-screen h-[calc( 100% - 64px )] w-full px-5 overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-gray scrollbar-track-white scrollbar-rounded-md">
         <div className="mt-3 md:mt-8 flex justify-center items-center w-full ">
 
           <h2 className="text-xl md:text-3xl font-extrabold leading-6">{session?.user?.name?'Welcome Back '+session.user.name:'Welcome'}</h2>

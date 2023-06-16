@@ -4,6 +4,7 @@ import { FullProduct } from '@/types';
 import Link from 'next/link';
 import {SlBasket} from "react-icons/sl"
 import FavoriteButton from '../Favorite/FavoriteButton';
+import clsx from 'clsx';
 interface ProductProps {
     product : FullProduct
 };
@@ -54,16 +55,15 @@ function Product({product}:ProductProps) {
                         </h2>
                         <div 
                             onClick={handleAddProductToBasket}
-                            className="
-                                flex flex-row items-center justify-end gap-[5px] w-full
-                                absolute -bottom-8 left-0 opacity-0 delay-200
-                                group-hover:bottom-3 group-hover:opacity-100 group-hover:delay-200
-                                transition-all cursor-pointer
-                                
-                            "
+                            className={clsx(`
+                                flex flex-row items-center justify-end gap-[5px] 
+                                absolute -bottom-8 right-0 opacity-0 delay-200
+                                group-hover:bottom-2 group-hover:opacity-100 group-hover:delay-200
+                                transition-all pointer-events-none group-hover:pointer-events-auto
+                            `)}
                         >
-                            <SlBasket size={16} /> 
-                            <span className="text-sm mr-2 font-bold">Add To Basket</span>
+                            <SlBasket className='cursor-pointer' size={16} /> 
+                            <span className="text-sm mr-2 font-bold cursor-pointer">Add To Basket</span>
                             
                         </div>
                         {/* add some stuff for for hover to add */}

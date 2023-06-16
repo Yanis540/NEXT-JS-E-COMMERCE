@@ -49,6 +49,7 @@ model Product {
   quantity     Int        @default(0)
   categories   Category[]
   category_ids String
+  description  String?
   price        Int
   liked_by     User[]
 }
