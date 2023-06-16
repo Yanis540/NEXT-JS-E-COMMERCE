@@ -4,7 +4,7 @@ import {useAccountRoutes } from './hooks/use-account-routes';
 import SidebarAccountDesktop from './components/SidebarAccountDesktop';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import SidebarAccountMobile from './components/SidebarAccountMobile';
-
+import {CgSidebarOpen} from "react-icons/cg"
 interface SidebarAccountProps {
 
 };
@@ -24,7 +24,7 @@ function SidebarAccount({}:SidebarAccountProps) {
                 onClick={toggleMobileMenu}
                 className='flex-[0.05] flex lg:hidden flex-row items-start justify-center cursor-pointer '
             >   
-                <RxHamburgerMenu className="text-dark-gray " size={30} /> 
+                <CgSidebarOpen className="text-dark-gray " size={30} /> 
             </div>
             <SidebarAccountMobile  
                 onClose={()=>setShowMobileMenu(false)}
