@@ -52,7 +52,7 @@ function Drawer({children,isOpen,onClose,left}:DrawerProps) {
                                     leaveTo={left?"-translate-x-full":"translate-x-full"}
                                 >
                                     <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                                        <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                                        <div className="flex h-full flex-col  bg-white py-6 shadow-xl scrollbar-thin overflow-y-scroll scrollbar-thumb-dark-gray scrollbar-track-white scrollbar-rounded-md">
                                             <div className="px-4 sm:px-6">
                                                 <div className="flex items-start justify-end">
                                                     <div className="ml-3 h-7 flex items-center">

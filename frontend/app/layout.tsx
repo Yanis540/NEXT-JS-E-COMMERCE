@@ -10,7 +10,6 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import useGetUser from './hooks/use-get-user'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {

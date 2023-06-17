@@ -11,9 +11,10 @@ interface ProductProps {
 
 function Product({product}:ProductProps) {
     const {name} =product||{}
-    const {add} = useStoreBasket();
+    const {add}= useStoreBasket()||{};
     const handleAddProductToBasket = ()=>{
-        add(product)
+        if(add)
+            add(product)
     }
     return (
         <div key={product.id} className="inline-block px-3">
@@ -43,6 +44,7 @@ function Product({product}:ProductProps) {
                         </Link>
                         <FavoriteButton productId={product?.id??''} /> 
                     </div>
+                    {/* add some stuff for for hover to add */}
                     <div className='group duration-300 transition-all ease-in-out'>
                         <h2 className="
                             flex flex-row items-center justify-center gap-[5px]  font-100
@@ -58,7 +60,7 @@ function Product({product}:ProductProps) {
                             className={clsx(`
                                 flex flex-row items-center justify-end gap-[5px] 
                                 absolute -bottom-8 right-0 opacity-0 delay-200
-                                group-hover:bottom-2 group-hover:opacity-100 group-hover:delay-200
+                                group-hover:bottom-1 group-hover:opacity-100 group-hover:delay-200
                                 transition-all pointer-events-none group-hover:pointer-events-auto
                             `)}
                         >
@@ -66,7 +68,6 @@ function Product({product}:ProductProps) {
                             <span className="text-sm mr-2 font-bold cursor-pointer">Add To Basket</span>
                             
                         </div>
-                        {/* add some stuff for for hover to add */}
                     </div>
                     
                 </div>

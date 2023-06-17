@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+'use client'
 import HorizontalCategoryScroll from '@/components/Category/HorizontalCategoryScroll';
 import FavoriteButton from '@/components/Favorite/FavoriteButton';
 import { useStoreBasket } from '@/context/store/use-store-basket';
@@ -13,9 +14,10 @@ interface ProductDetailsProps {
 
 function ProductDetails({product}:ProductDetailsProps) {
     const {categories,isLoading:isLoadingCategories} = useCategories()
-    const {add} = useStoreBasket();
+    const {add} = useStoreBasket()||{};
     const handleAddProductToBasket = ()=>{
-        add(product)
+        if(add)
+            add(product)
     }
     return (
         <div className="flex-1 flex flex-col items-center justify-start gap-4 h-full  overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-gray scrollbar-track-white scrollbar-rounded-md">

@@ -2,23 +2,31 @@
 import FavoriteButton from '@/components/Favorite/FavoriteButton';
 import { useStoreBasket } from '@/context/store/use-store-basket';
 import { BasketProduct, FullProduct } from '@/types';
+import clsx from 'clsx';
 import Link from 'next/link';
 import React from 'react';
 import {IoIosAddCircleOutline,IoMdRemoveCircleOutline} from 'react-icons/io'
 import {MdDeleteOutline} from "react-icons/md";
-interface NavbarProductProps {
+interface ProductBasketProps {
     product : BasketProduct
+    checkout ? : boolean 
 };
 
-function NavbarProduct({product}:NavbarProductProps) {
+function ProductBasket({product,checkout=false}:ProductBasketProps) {
     const {name}= product||{}
     const full_product :FullProduct= product;
-    const {add,remove,remove_all} = useStoreBasket()
-    const handleAddProductToBasket = ()=> add(full_product)
-    const handleRemoveOneProductFromBasket = ()=> remove(full_product)
-    const handleRemoveProductFromBasket = ()=> remove_all(full_product.id)
+    const {add,remove,remove_all} = useStoreBasket()||{};
+    const handleAddProductToBasket = ()=> add && add(full_product)
+    const handleRemoveOneProductFromBasket = ()=> remove && remove(full_product)
+    const handleRemoveProductFromBasket = ()=> remove_all && remove_all(full_product.id)
     return (
-        <div key={product.id} className="flex flex-row items-center justify-center w-full p-2 px-3 border-b-[0.1px] border-gray-300">
+        <div className={clsx(`
+            flex flex-row items-center justify-center w-full p-2 md:px-3 
+            hover:bg-gray-200 transition-all duration-200  border-gray-300
+            `, 
+            checkout ? "border-[0.1px] rounded-lg": " border-b-[0.1px] "
+
+        )}>
             <div className='flex flex-col items-center justify-center rounded-lg '>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
@@ -75,4 +83,4 @@ function NavbarProduct({product}:NavbarProductProps) {
     );
 };
 
-export default NavbarProduct;
+export default ProductBasket;

@@ -30,20 +30,15 @@ function ProductSearch({}:ProductSearchProps) {
                         /> 
                     </div>
                 }
-                
+
                 {
                     !isLoading && !!error && <ProductNotFound /> 
                 }
                 {
-                    !false && ! false && product && (
-                        <ProductDetails product = {product} /> 
-                    )
-                }
-                {/* {
                     !isLoading && ! error && product && (
                         <ProductDetails product = {product} /> 
                     )
-                } */}
+                }
            </div>
         </div>
     );

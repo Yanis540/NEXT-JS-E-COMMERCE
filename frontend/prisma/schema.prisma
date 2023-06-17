@@ -52,6 +52,28 @@ model Product {
   description  String?
   price        Int
   liked_by     User[]
+  orders       Order[]
+}
+
+model Order {
+  id       String      @id @default(uuid())
+  date     DateTime    @default(now())
+  amount   BigInt      @default(0)
+  state    OrderState
+  status   OrderStatus
+  products Product[]
+}
+
+enum OrderState {
+  progress
+  cancelled
+  successfull
+}
+
+enum OrderStatus {
+  payed
+  unpayed
+  delivery
 }
 
 model Category {

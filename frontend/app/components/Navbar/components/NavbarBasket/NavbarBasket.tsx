@@ -1,8 +1,9 @@
+'use client'
 import Drawer from '@/components/Drawer/Drawer';
 import { useStoreBasket } from '@/context/store/use-store-basket';
 import { BasketProduct } from '@/types';
 import React, { useMemo } from 'react';
-import NavbarProduct from './components/NavbarProduct';
+import ProductBasket from '@/components/Product/ProductBasket';
 import Button from '@/components/Button/Button';
 import Link from 'next/link';
 
@@ -13,13 +14,14 @@ interface NavbarBasketProps {
 };
 
 function NavbarBasket({onClose,visible}:NavbarBasketProps) {
-    const {basket} = useStoreBasket();
+    const {basket} = useStoreBasket()||{};
     const try_basket:BasketProduct[] = [
         {
             category_ids:"",
             id: "20a0b09f-4fcb-48e7-a819-a2394638af0a", 
             image: "https://www.politix.com.au/dw/image/v2/ABBA_PRD/on/demandware.static/-/Sites-politix-master-catalog/default/dwf131c577/images/hires/Summer23/D1%20Apparel%20Batch%202/YS07-BLACK-1-min.jpg?sw=2500&sh=3000&sm=cut",
             name: "Black Shirt",
+            description:"",
             price: 0,
             qte: 1,
             quantity: 10, 
@@ -38,7 +40,7 @@ function NavbarBasket({onClose,visible}:NavbarBasketProps) {
                 <div className='flex-1 w-full overflow-y-scroll px-2 rounded-lg border-[0.05px] border-dark-gray scrollbar-hide '>
                     {
                         basket?.map((product)=>(
-                            <NavbarProduct key={product.id} product={product} /> 
+                            <ProductBasket key={product.id} product={product} /> 
                         ))
                     }
                     {

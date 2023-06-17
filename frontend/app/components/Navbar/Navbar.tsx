@@ -10,7 +10,6 @@ import {RxHamburgerMenu} from "react-icons/rx"
 import {AiOutlineShoppingCart} from "react-icons/ai"
 import {MdOutlineBookmarkBorder} from "react-icons/md"
 import AccountMenu from './components/AccountMenu';
-import { useStoreBasket } from '@/context/store/use-store-basket';
 import NavbarBasket from './components/NavbarBasket/NavbarBasket';
 import useScroll from './hooks/use-scroll';
 interface NavbarProps {
@@ -30,7 +29,6 @@ function Navbar({}:NavbarProps) {
     const toggleAccountMenu = ()=>setShowAccountMenu(!showAccountMenu)
     const toggleMobileMenu = ()=>setShowMobileMenu(!showMobileMenu)
     const toggleBasket = ()=>setShowBasket(!showBasket)
-    const {basket} = useStoreBasket()
     const items:Item[] = [
         {
             href:'/shop',

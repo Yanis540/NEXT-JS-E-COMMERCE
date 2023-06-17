@@ -1,3 +1,4 @@
+'use client'
 import { useFavorite } from '@/hooks/use-favorite';
 import React, { useCallback, useMemo } from 'react';
 import {GrFavorite as EmptyHeart} from "react-icons/gr";

@@ -28,7 +28,7 @@ todo    -   fix the protected routes problem with NextAuth ???
 
 
 !   Product : 
-todo    -   display the product 
+?       -   display the product 
 
 
 

@@ -12,7 +12,7 @@ interface NavbarItemProps {
 };
 
 function NavbarItem({href,onClick,label,Icon,isMobile}:NavbarItemProps) {
-    const {basket} = useStoreBasket();
+    const {basket}= useStoreBasket()||{};
     const router=useRouter()
     const isCheckout = href.includes('checkout');
 
