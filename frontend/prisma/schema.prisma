@@ -40,6 +40,7 @@ model User {
   updatedAt         DateTime  @updatedAt
   accounts          Account[]
   favorite_products Product[]
+  orders            Order[]
 }
 
 model Product {
@@ -56,24 +57,37 @@ model Product {
 }
 
 model Order {
-  id       String      @id @default(uuid())
-  date     DateTime    @default(now())
-  amount   BigInt      @default(0)
-  state    OrderState
-  status   OrderStatus
+  id              String         @id
+  date            DateTime       @default(now())
+  amount          Int            @default(0)
+  checkout_status CheckoutStatus
+  checkout_url    String
+  payment_status  PaymentStatus
+  status          OrderStatus
+  userId          String
+  type            String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   products Product[]
 }
 
-enum OrderState {
-  progress
-  cancelled
-  successfull
+enum PaymentStatus {
+  paid
+  unpaid
+  no_payment_required
+}
+
+enum CheckoutStatus {
+  open
+  complete
+  expired
 }
 
 enum OrderStatus {
-  payed
-  unpayed
-  delivery
+  progress
+  cancelled
+  delivered
 }
 
 model Category {

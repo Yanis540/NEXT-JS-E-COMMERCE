@@ -60,7 +60,7 @@ function Product({product}:ProductProps) {
                             className={clsx(`
                                 flex flex-row items-center justify-end gap-[5px] 
                                 absolute -bottom-8 right-0 opacity-0 delay-200
-                                group-hover:bottom-1 group-hover:opacity-100 group-hover:delay-200
+                                group-hover:bottom-2 group-hover:opacity-100 group-hover:delay-200
                                 transition-all pointer-events-none group-hover:pointer-events-auto
                             `)}
                         >

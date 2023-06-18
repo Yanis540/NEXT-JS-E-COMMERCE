@@ -49,22 +49,22 @@ export async function POST(req:Request,context:{params:any}){
     const body = await req.json();
     const {basket} = payementBodySchema.parse(body)
     const checkoutSession  = await stripe.checkout.sessions.create({
-        mode:"payment",
-        payment_method_types:["card"],
-        success_url:`http://localhost:3000/checkout?success=true&sessionId={CHECKOUT_SESSION_ID}`, 
-        cancel_url:`http://localhost:3000/checkout?cancel=true&sessionId={CHECKOUT_SESSION_ID}`, 
-        line_items:basket.map((product)=>({
-                price_data:{
-                    currency:"usd", 
-                    product_data:{
-                        name:product.name,
-                        images:[product?.image??''],
-                    },
-                    unit_amount:product.price*100 
-                },
-                quantity:product.qte
-            })
-        )
+      mode:"payment",
+      payment_method_types:["card"],
+      success_url:`http://localhost:3000/checkout?success=true&sessionId={CHECKOUT_SESSION_ID}`, 
+      cancel_url:`http://localhost:3000/checkout?cancel=true&sessionId={CHECKOUT_SESSION_ID}`, 
+      line_items:basket.map((product)=>({
+        price_data:{
+          currency:"usd", 
+          product_data:{
+            name:product.name,
+            images:[product?.image??''],
+          },
+          unit_amount:product.price*100 
+        },
+        quantity:product.qte
+      })
+      )
     })
     console.log(checkoutSession)
 

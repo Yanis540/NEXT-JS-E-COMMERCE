@@ -1,7 +1,7 @@
 /* 
 ! scroll bar
 scrollbar-thin scrollbar-thumb-dark-gray scrollbar-track-white scrollbar-rounded-md
-
+?success=true&sessionId=cs_test_a1aHHN3KoMjVf9UiXSlEBgci3jMtb1WVGFAoy1Vdt5ryD3BUxK01OKGGwf
 
 !   Auth : 
 todo    -   fix the protected routes problem with NextAuth ??? 
