@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
 import Basket from './components/Basket/Basket';
-import Payment from './components/Payment';
 import { useStoreBasket } from '@/context/store/use-store-basket';
 import useGetUser from '@/hooks/use-get-user';
 import EmptyBasket from './components/Basket/EmptyBasket';
@@ -20,7 +19,6 @@ function Checkout({}:CheckoutProps) {
                     basket?.length !=0 ? (
                     <>
                         <Basket />
-                        <Payment /> 
                     </>
                     ):(
                         <EmptyBasket />

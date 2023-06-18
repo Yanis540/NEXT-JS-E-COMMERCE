@@ -7,23 +7,19 @@ import { useCategories } from '@/hooks/use-categories';
 import { useProducts } from '@/hooks/use-products';
 import HorizontalCategoryScroll from '@/components/Category/HorizontalCategoryScroll';
 import HorizontalProductScroll from '@/components/Product/HorizontalProductScroll';
-import { calculateTotal } from './util/calculate-total';
-
+import { calculateTotal } from '../../util/calculate-total';
+import StripeCheckoutForm from './components/StripeCheckoutForm';
 interface BasketProps {
 
 };
 
 function Basket({}:BasketProps) {
     const {basket} = useStoreBasket()||{};
-    const {categories , isLoading: isLoadingCategories} = useCategories();
-    const {products,isLoading:isLoadingProducts} = useProducts();
-    const total = useMemo(()=>{
-        return calculateTotal(basket??[]);
-    },[basket])
-    console.log(total);
+    const total = calculateTotal(basket??[]);
+ 
     return (
         <div className={clsx(
-            "flex-1 md:flex-[0.7] flex flex-col gap-[10px] p-5 border border-gray-300 rounded-lg", 
+            "flex-1 flex flex-col gap-[10px] p-5 border border-gray-300 rounded-lg", 
             )}
         >
             <h2 className='font-bold  text-center mb-3 '>Your Basket </h2>
@@ -34,8 +30,10 @@ function Basket({}:BasketProps) {
                 ))
             }
             </div>
-            <div className=' border border-gray-300 rounded-lg'>
+            <div className=' flex flex-col items-between border border-gray-300 rounded-lg'>
                 <h2 className='font-bold p-3 text-md'>Total to pay : {total} <span className='font-medium'>$</span></h2> 
+                <StripeCheckoutForm /> 
+                
             </div>
 
         </div>

@@ -40,6 +40,8 @@ todo        -   Display Orders page
 
 !   Checkout 
 todo    -   Add a checkout page 
+todo    -   add far a the payment goes, it's returning the page to /checkout/success=true&sessionId={CHECKOUT_SESSION_ID} you just have to add more 
+todo        things like to save the session in the database and remove clear the basket 
 
 
 */
