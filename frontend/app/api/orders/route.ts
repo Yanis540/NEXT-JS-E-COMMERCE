@@ -14,7 +14,8 @@ export async function GET(req:Request){
                 user:{
                     id:user.id
                 }
-            }, 
+            },
+            orderBy:[{"date":"desc"}], 
             include:{
                 products:true 
             }
