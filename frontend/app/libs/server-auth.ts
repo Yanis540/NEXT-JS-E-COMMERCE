@@ -1,4 +1,4 @@
-import { getSession } from "next-auth/react"
+import { authOptions } from "./auth";
 import { db } from "./db";
 import { getServerSession } from "next-auth";
 
@@ -6,8 +6,7 @@ import { getServerSession } from "next-auth";
 
 
 const serverAuth = async()=>{
-    const session = {user:{email:"yanis@gmail.com"}}
-    // const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if(!session?.user?.email)
         throw new Error("Unauthorized");
     const user = await db.user.findFirst({

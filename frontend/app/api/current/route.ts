@@ -11,7 +11,9 @@ export async function GET(req:Request){
 
     }
     catch(err:any ){
-        console.log(err.message,"ERROR_PRODUCTS_FAVORITE_PRODUCTID"); 
+        if((err.message as string).includes("Unauthorized") )
+            return NextResponse.json({user:null})
+        console.log(err.message,"ERROR_CURRENT"); 
         return new NextResponse("Internal Error Server",{status:500})
     }
 }

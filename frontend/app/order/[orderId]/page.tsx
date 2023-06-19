@@ -19,7 +19,7 @@ function Order({}:OrderProps) {
     if(isLoading)
         return(
         <div className="flex-1 flex flex-col text-dark-gray pt-[64px] max-h-screen w-full px-5 overflow-y-hidden ">
-            <div className='flex-1 flex flex-col items-center justify-center  gap-4 p-4  h-full w-full overflow-y-scroll scrollbar-hide border border-red-500 '>
+            <div className='flex-1 flex flex-col items-center justify-center  gap-4 p-4  h-full w-full overflow-y-scroll scrollbar-hide '>
                 <CircularProgress /> 
             </div>
         </div>
@@ -27,7 +27,7 @@ function Order({}:OrderProps) {
     if(!!error)
         return (
         <div className="flex-1 flex flex-col text-dark-gray pt-[64px] max-h-screen w-full px-5 overflow-y-hidden ">
-            <div className='flex-1 flex flex-col  gap-4 p-4  h-full w-full overflow-y-scroll scrollbar-hide border border-red-500 '>
+            <div className='flex-1 flex flex-col  gap-4 p-4  h-full w-full overflow-y-scroll scrollbar-hide '>
                 <OrderError error={error} /> 
             </div>
         </div>

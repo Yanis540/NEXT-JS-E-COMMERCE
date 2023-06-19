@@ -25,7 +25,8 @@ const useAuthService = ()=>{
         handleSubmit , 
         formState:{
             errors
-        }
+        }, 
+        reset
     }= useForm<FieldValues>({
         defaultValues:{
             name:'',
@@ -40,7 +41,8 @@ const useAuthService = ()=>{
             //axios Register
             if( variant === 'REGISTER'){
                 await axios.post('/api/register',data,)
-                await signIn('credentials',{data});
+                reset()
+                setVariant("LOGIN");
             }
             // NextAuth Login 
             if(variant === 'LOGIN'){

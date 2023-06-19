@@ -4,7 +4,7 @@ scrollbar-thin scrollbar-thumb-dark-gray scrollbar-track-white scrollbar-rounded
 ?success=true&sessionId=cs_test_a1aHHN3KoMjVf9UiXSlEBgci3jMtb1WVGFAoy1Vdt5ryD3BUxK01OKGGwf
 
 !   Auth : 
-todo    -   fix the protected routes problem with NextAuth ??? 
+?       -   fix the protected routes problem with NextAuth ??? 
 
 !   Home page : 
 ?       -   display products 
@@ -36,12 +36,12 @@ todo    -   fix the protected routes problem with NextAuth ???
 !       - General Account 
 ?           -   Show general account informations  
 !       - Orders 
-todo        -   Display Orders page         
+?           -   Display Orders page         
 
 !   Checkout 
-todo    -   Add a checkout page 
-todo    -   add far a the payment goes, it's returning the page to /checkout/success=true&sessionId={CHECKOUT_SESSION_ID} you just have to add more 
-todo        things like to save the session in the database and remove clear the basket 
+?       -   Add a checkout page 
+?       -   add far a the payment goes, it's returning the page to /checkout/success=true&sessionId={CHECKOUT_SESSION_ID} you just have to add more 
+?           things like to save the session in the database and remove clear the basket 
 
 
 */
