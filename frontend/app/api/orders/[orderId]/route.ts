@@ -1,6 +1,7 @@
 
 import { db } from "@/libs/db";
 import { serverAuth } from "@/libs/server-auth";
+import { convertOrdersBasket } from "@/util/convert-order-basket";
 import { NextResponse } from "next/server";
 
 
@@ -11,8 +12,8 @@ export async function GET(req:Request,context:{params:{orderId:string}}){
         const user = await serverAuth();
         const {orderId} = context.params; 
         if(!orderId) 
-            return new NextResponse("No orderId provided",{status:400})
-        const order = await db.order.findFirst({
+            return new NextResponse("No Order ID provided",{status:400})
+        const unstructured_order = await db.order.findFirst({
             where:{
                 id: orderId, 
                 user:{
@@ -20,11 +21,21 @@ export async function GET(req:Request,context:{params:{orderId:string}}){
                 }
             }, 
             include:{
-                products:true 
+                basket: {
+                    include:{
+                        product:{
+                            include:{
+                                categories:true
+                            }
+                        }
+                    }
+                }
             }
         })
-        if(!order)
+        if(!unstructured_order)
             return new NextResponse(`No Order with ID ${orderId}`, {status:401})
+        const order = convertOrdersBasket([unstructured_order])[0]
+        
         return NextResponse.json({order})
 
     }

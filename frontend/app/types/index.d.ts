@@ -11,5 +11,5 @@ type FullUser = User&{
 }
 
 type FullOrder = Order & {
-    products: Product[];
+    basket: BasketProduct [];
 }

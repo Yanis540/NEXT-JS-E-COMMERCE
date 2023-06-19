@@ -2,6 +2,7 @@
 import { calculateTotal } from "@/checkout/util/calculate-total";
 import { db } from "@/libs/db";
 import { serverAuth } from "@/libs/server-auth";
+import { convertOrdersBasket } from "@/util/convert-order-basket";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import {ZodError, z} from "zod";
@@ -25,7 +26,6 @@ const createOrderBody = z.object({
     })), 
     sessionId : z.string(),  
 })
-
 export async function POST(req:Request){
     try{
         const user = await serverAuth();
@@ -46,13 +46,24 @@ export async function POST(req:Request){
             return new NextResponse('Invalid Checkout Session');
         const productIds = basket.map((product)=>({id:product.id}));
         const amount = calculateTotal(basket);
-        const order = await db.order.create({
+
+        const unstructured_order = await db.order.create({
             data:{
                 id: sessionId, 
                 amount:amount , 
                 products:{
                     connect:productIds
                 }, 
+                basket:{
+                    create:basket.map((basketProduct)=>({
+                        product:{
+                            connect:{
+                                id:basketProduct.id
+                            }
+                        }, 
+                        qte: basketProduct.qte
+                    }))
+                },
                 user:{
                     connect:{
                         id:user?.id
@@ -65,9 +76,19 @@ export async function POST(req:Request){
                 status : "progress"
             },
             include:{
-                products:true 
+                basket: {
+                    include:{
+                        product:{
+                            include:{
+                                categories:true
+                            }
+                        }
+                    }
+                }
             }
         })
+        const order = convertOrdersBasket([unstructured_order])[0]
+
         return NextResponse.json({order:order})
 
     }

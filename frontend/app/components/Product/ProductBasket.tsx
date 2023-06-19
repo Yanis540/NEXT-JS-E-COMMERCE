@@ -10,9 +10,10 @@ import {MdDeleteOutline} from "react-icons/md";
 interface ProductBasketProps {
     product : BasketProduct
     checkout ? : boolean 
+    order ?: boolean 
 };
 
-function ProductBasket({product,checkout=false}:ProductBasketProps) {
+function ProductBasket({product,checkout=false,order=false}:ProductBasketProps) {
     const {name}= product||{}
     const full_product :FullProduct= product;
     const {add,remove,remove_all} = useStoreBasket()||{};
@@ -44,8 +45,7 @@ function ProductBasket({product,checkout=false}:ProductBasketProps) {
                         <h2 className="
                             flex flex-row items-center justify-start gap-[5px]  font-100
                         ">
-                            Price : {product.price}
-                            <span className="text-xs text-gray-500  ">$</span>
+                            {product.price}$
                         </h2>
                         
                         {/* add some stuff for for hover to add */}
@@ -59,25 +59,34 @@ function ProductBasket({product,checkout=false}:ProductBasketProps) {
                
             </div>
             <div className="flex flex-col items-center ">
-                <div className="flex flex-row items-center justify-between gap-[15px] relative">
-                    <IoMdRemoveCircleOutline 
-                        onClick={handleRemoveOneProductFromBasket} 
-                        className="cursor-pointer " 
-                        size={24} 
+            {
+                !order ? (
+                    <>
+                    <div className="flex flex-row items-center justify-between gap-[15px] relative">
+                        <IoMdRemoveCircleOutline 
+                            onClick={handleRemoveOneProductFromBasket} 
+                            className="cursor-pointer " 
+                            size={24} 
+                        /> 
+                            <span className="font-100">{product.qte}</span>
+                        <IoIosAddCircleOutline 
+                            onClick={handleAddProductToBasket} 
+                            className="cursor-pointer " 
+                            size={24} 
+                        /> 
+                    </div>
+                    <MdDeleteOutline 
+                        onClick={handleRemoveProductFromBasket} 
+                        className={"text-red-500 cursor-pointer"} 
+                        size={26} 
                     /> 
-                        <span className="font-100">{product.qte}</span>
-                    <IoIosAddCircleOutline 
-                        onClick={handleAddProductToBasket} 
-                        className="cursor-pointer " 
-                        size={24} 
-                    /> 
-                </div>
-                <MdDeleteOutline 
-                    onClick={handleRemoveProductFromBasket} 
-                    className={"text-red-500 cursor-pointer"} 
-                    size={26} 
-                /> 
+                    </>
+                ):(
+                    <h2 className="">{product.qte}</h2>
+                )
+            }
             </div>
+   
            
         </div>
     );

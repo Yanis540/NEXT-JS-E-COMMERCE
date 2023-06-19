@@ -44,16 +44,17 @@ model User {
 }
 
 model Product {
-  id           String     @id @default(uuid())
-  name         String
-  image        String?
-  quantity     Int        @default(0)
-  categories   Category[]
-  category_ids String
-  description  String?
-  price        Int
-  liked_by     User[]
-  orders       Order[]
+  id              String               @id @default(uuid())
+  name            String
+  image           String?
+  quantity        Int                  @default(0)
+  categories      Category[]
+  category_ids    String
+  description     String?
+  price           Int
+  liked_by        User[]
+  orders          Order[]
+  products_basket BasketProductOrder[]
 }
 
 model Order {
@@ -70,6 +71,17 @@ model Order {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   products Product[]
+  basket   BasketProductOrder[]
+}
+
+model BasketProductOrder {
+  id_order   String
+  id_product String
+  order      Order   @relation(fields: [id_order], references: [id])
+  product    Product @relation(fields: [id_product], references: [id])
+  qte        Int
+
+  @@id([id_order, id_product])
 }
 
 enum PaymentStatus {

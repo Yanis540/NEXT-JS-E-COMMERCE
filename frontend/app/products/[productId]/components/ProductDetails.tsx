@@ -21,7 +21,7 @@ function ProductDetails({product}:ProductDetailsProps) {
     }
     return (
         <div className="flex-1 flex flex-col items-center justify-start gap-4 h-full  overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-gray scrollbar-track-white scrollbar-rounded-md">
-            <div className="flex flex-col lg:flex-row  gap-[20px] bg-light-gray-transparent rounded-xl py-6  border border-gray-300 w-[70%] max-w-[1200px] " >
+            <div className="flex flex-col lg:flex-row  gap-[20px]  rounded-xl py-6  w-[70%] max-w-[1200px] " >
                 {/* iMAGE */}
                 <img className='w-96 h-96 rounded-lg flex flex-col items-center justify-center mx-auto object-contain ' src={product?.image??''} alt="" /> 
                 {/* Details */}
@@ -32,7 +32,7 @@ function ProductDetails({product}:ProductDetailsProps) {
                         <h2 className='font-extrabold text-xl md:text-2xl lg:text-3xl'>{product?.name}</h2>
                         <span className='font-bold'> Categories : <span className='font-medium'> {product?.categories?.map((category)=>category.name).join(', ')}</span></span>
                         {/* adding to basket */}
-                        <div className='flex flex-row items-center justify-between relative '>
+                        <div className='flex flex-col items-start gap-2 justify-between relative '>
                             <h3 className='font-bold '>Quantity: {product.quantity}</h3>
                             <div className='group duration-300 transition-all ease-in-out'>
                                 <h2 className="
@@ -41,14 +41,14 @@ function ProductDetails({product}:ProductDetailsProps) {
                                     group-hover:-translate-y-10 group-hover:opacity-0 group-hover:delay-200
                                     transition-all cursor-pointer
                                 ">
-                                    Price : {product.price}
-                                    <span className="text-xs text-gray-500 font-medium ">$</span>
+                                    {product.price} $
+                                    {/* <span className="text-xs text-gray-500 font-medium ">$</span> */}
                                 </h2>
                                 <div 
                                     onClick={handleAddProductToBasket}
                                     className="
                                         flex flex-row items-center justify-end  gap-[5px]  
-                                        absolute -bottom-8 right-0 opacity-0 delay-200
+                                        absolute -bottom-8 left-0 opacity-0 delay-200
                                         group-hover:bottom-2 group-hover:opacity-100 group-hover:delay-200
                                         transition-all pointer-events-none group-hover:pointer-events-auto
                                         
