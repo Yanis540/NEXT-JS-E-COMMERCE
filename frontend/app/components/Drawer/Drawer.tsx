@@ -1,12 +1,9 @@
 'use client'
-import Avatar from '@/components/Avatar/Avatar';
 import { Transition , Dialog } from '@headlessui/react';
-
+import React from "react"
 import { format } from 'date-fns';
-import React, { useMemo, useState } from 'react';
-import { IoClose, IoTrash } from 'react-icons/io5';
+import { IoClose } from 'react-icons/io5';
 
-import AvatarGroup from '@/components/Avatar/AvatarGroup';
 import {ReactNode} from "react"
 import clsx from 'clsx';
 interface DrawerProps {
