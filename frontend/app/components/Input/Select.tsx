@@ -26,7 +26,7 @@ function Select({label,value,onChange,options,disabled,errors}:SelectProps) {
                 onChange={onChange}
                 isMulti
                 options={options}
-                menuPortalTarget={document.body}
+                menuPortalTarget={typeof document !="undefined"? document.body: null}
                 styles={{
                     menuPortal : (base)=>({
                         ...base , 
