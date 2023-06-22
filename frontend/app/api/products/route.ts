@@ -95,6 +95,6 @@ export async function GET(req:Request,context:{params:any}){
     }
     catch(err:any ){
         console.log(err.message,"ERROR_PRODUCTS"); 
-        return new NextResponse(err,{status:500})
+        return new NextResponse(err.message,{status:500})
     }
 }
