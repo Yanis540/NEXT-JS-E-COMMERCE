@@ -1,4 +1,4 @@
-import axios from "axios"
+ import axios from "axios"
 
 import {
     useMutation,
@@ -22,7 +22,7 @@ const useProducts= ()=>{
     const {data,error,isLoading,mutate:getProducts}:useProductsType= useMutation({
         mutationKey:["products"], 
         mutationFn:async({name,categories}:{name?:string,categories?:Category[]})=>{
-            const response = await axios.get('/api/products',{params:{name,categories:categories?JSON.stringify(categories):JSON.stringify([])}})
+            const response = await axios.put('/api/products',{name,categories:categories??[]})
             const data = await response.data
             return data;
         }

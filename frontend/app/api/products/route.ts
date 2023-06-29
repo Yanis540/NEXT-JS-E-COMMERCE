@@ -1,27 +1,31 @@
 import { db } from "@/libs/db";
 import { FullProduct } from "@/types";
-import { Category } from "@prisma/client";
 import { NextResponse } from "next/server";
+import {ZodError, z} from "zod";
+
+const categorieSchema = z.object({
+    id:z.string(),
+    name:z.string()
+})
+
+const bodySchema =z.object({
+    name: z.string().optional(), 
+    categories: z.array(
+        categorieSchema
+    ).optional()
+}) 
 
 
-
-export async function GET(req:Request,context:{params:any}){
+export async function PUT(req:Request,context:{params:any}){
     try{
-        const {searchParams} = new URL(req.url);
-        const products_bis = await db.product.findMany({
-            include:{
-                categories:true
-            }
-        })
-        return NextResponse.json({products:products_bis,searchParams })
-        const name = searchParams.get('name');
-        const categories:Category[]  = (searchParams.get('categories')?JSON.parse(searchParams.get('categories')!):[] )as Category[] ;
-        const categories_ids = categories.map((categorie)=>categorie.id); 
-        const categories_names = categories.map((categorie)=>categorie.name); 
+        const body = await req.json(); 
+        const {categories,name} = bodySchema.parse(body);
+        const categories_ids = !categories?[]:categories!.map((categorie)=>categorie.id); 
+        const categories_names = !categories?[]:categories!.map((categorie)=>categorie.name); 
         let products: FullProduct[] = [];
         if(
             (!name || (name as string).trim()=="" ) 
-            && (! categories || categories.length==0)
+            && (! categories || categories?.length==0)
         )
         
             products = await db.product.findMany({
@@ -86,7 +90,7 @@ export async function GET(req:Request,context:{params:any}){
                                     }
                                 },
                                 {
-                                    name:name?.trim().length==0?{}:{ contains : name?.trim()}
+                                    name:name?.trim().length==0?{}:{ contains : name?.trim(),mode:"insensitive"}
                                 }, 
                             ],
                         },
@@ -100,6 +104,8 @@ export async function GET(req:Request,context:{params:any}){
 
     }
     catch(err:any ){
+        if(err instanceof ZodError)
+            return new NextResponse("Type conversion erorr",{status:403})
         console.log(err.message,"ERROR_PRODUCTS"); 
         return new NextResponse("Internal Error Server",{status:500})
     }
