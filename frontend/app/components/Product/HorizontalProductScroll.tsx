@@ -19,7 +19,7 @@ function HorizontalProductScroll({label,products,isLoading,className}:Horizontal
                 {label} : 
             </h1>
             <div
-                className="flex overflow-x-scroll  pb-10 scrollbar-hide "
+                className="flex overflow-x-scroll  pb-10 scrollbar "
             >
                 <div className="flex flex-nowrap pr-5 md:pr-10 lg:pr-20 ">
                     

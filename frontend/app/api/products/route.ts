@@ -8,13 +8,19 @@ import { NextResponse } from "next/server";
 export async function GET(req:Request,context:{params:any}){
     try{
         const {searchParams} = new URL(req.url);
+        const products_bis = await db.product.findMany({
+            include:{
+                categories:true
+            }
+        })
+        return NextResponse.json({products:products_bis,searchParams })
         const name = searchParams.get('name');
         const categories:Category[]  = (searchParams.get('categories')?JSON.parse(searchParams.get('categories')!):[] )as Category[] ;
         const categories_ids = categories.map((categorie)=>categorie.id); 
         const categories_names = categories.map((categorie)=>categorie.name); 
         let products: FullProduct[] = [];
         if(
-            (!name || name.trim()=="" ) 
+            (!name || (name as string).trim()=="" ) 
             && (! categories || categories.length==0)
         )
         
@@ -95,6 +101,6 @@ export async function GET(req:Request,context:{params:any}){
     }
     catch(err:any ){
         console.log(err.message,"ERROR_PRODUCTS"); 
-        return  NextResponse.json({message:err.message})
+        return new NextResponse("Internal Error Server",{status:500})
     }
 }
